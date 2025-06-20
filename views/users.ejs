@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Displaying Information</title>
+    <style>
+        table ,th,tr,td{
+            border: black solid 1.8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Below is the list of our members</h1>
+    <h2> <a href="http://localhost:8080/users/new">Add a new user</a></h2>
+    <h2><a href="http://localhost:8080/">Back to Home</a></h2>
+    <table >
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <%for(user of users){%>
+        <tr>
+            <td><%= user.id  %></td>
+            <td><%= user.email  %></td>
+            <td><%= user.username  %></td>
+            <td><form action="/users/<%= user.id %>/edit">
+                    <button>Edit username</button>
+                </form>
+            <td><form method="post" action="/users/<%= user.id %>?_method=DELETE">
+                    <button>Delete Account</button>
+                </form>
+            </td> 
+            
+        </tr>
+         <%}%>
+    </table>
+</body>
+</html>
+
+    <!-- <%for(user of users){%>
+        <div class="user_data" style="background-color: bisque;">
+            <h4> Username: <%= user.username  %></h4>
+            <h4> Email: <%= user.email  %></h4>
+            <h4> ID: <%= user.id  %></h4>
+
+            <a href="https://localhost:8080/<%= user.id %>/edit">Edit username</a>
+        </div>
+    <%}%> -->
